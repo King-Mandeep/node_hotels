@@ -108,12 +108,14 @@
 const express = require('express');
 const db=require('./db');
 const app = express();
+require('dotenv').config();
+const PORT=process.env.PORT || 3000;
 const personRoutes=require('./routes/personRoutes');
 const menuItemRoutes=require('./routes/menuItemRoutes');
 
 const bodyParser=require('body-parser');
 app.use(bodyParser.json());
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
   console.log("listening on port 3000");
 });
 

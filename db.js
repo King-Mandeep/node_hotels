@@ -1,12 +1,12 @@
-const mongoose= require('mongoose');
+
 //Define the MonogoDB connection URL
 
- const MongoURL='mongodb://localhost:27017/Hotels';//Replace 'mydatabase' with your database name
+// const MongoURL='mongodb://localhost:27017/Hotels';//Replace 'mydatabase' with your database name
+
 // const MongoURL2='mongodb://localhost:27017/Menudb';
 // // 
 // async ()=>{
-    mongoose.connect(MongoURL);
-   const db = mongoose.connection;
+   
 //    await 
 // mongoose.connect(MongoURL2);
   //  const db2=mongoose.connection;
@@ -18,17 +18,7 @@ const mongoose= require('mongoose');
 //  const db = mongoose.createConnection(MongoURL);
 // const db2 = mongoose.createConnection(MongoURL2);
 // const MyModel2 = db2.model('MyModel', new mongoose.Schema({ name: String }));
-db.on('connected',()=>{
-    console.log('conected to MongoDB server');
-});
 
-db.on('error',(err)=>{
-    console.log('MongoDB connection error',err);
-});
-
-db.on('disconnected',()=>{
-    console.log('MongoDB disconncted');
-});
 // db2.on('connected',()=>{
 //     console.log('conected to MongoDB server');
 // });
@@ -82,4 +72,20 @@ db.on('disconnected',()=>{
 
 // Export the database connections
 // module.exports = { MyModel1, MyModel2 };
+const mongoose= require('mongoose');
+require('dotenv').config();
+ const MongoURL=process.env.DB_URL;
+    mongoose.connect(MongoURL);
+   const db = mongoose.connection;
+db.on('connected',()=>{
+    console.log('conected to MongoDB server');
+});
+
+db.on('error',(err)=>{
+    console.log('MongoDB connection error',err);
+});
+
+db.on('disconnected',()=>{
+    console.log('MongoDB disconncted');
+});
 module.exports=db;
